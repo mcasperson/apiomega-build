@@ -2,6 +2,7 @@ package com.apiomega.build
 
 import com.apiomega.build.services.impl.build.BuildApplyPlugins
 import com.apiomega.build.services.impl.build.BuildConfigureDependencies
+
 import com.apiomega.build.services.impl.shared.ConfigureMavenImpl
 import com.apiomega.build.services.impl.shared.ConfigureWrapperImpl
 import com.apiomega.build.services.impl.apiwar.ConfigureArtifactDetailsImpl
