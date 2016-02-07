@@ -1,4 +1,4 @@
-package com.apiomega.build.services.impl
+package com.apiomega.build.services.impl.apiwar
 
 import com.apiomega.build.services.SonatypePublishing
 import com.apiomega.build.services.impl.tasks.JavadocJarTask
@@ -11,7 +11,7 @@ import org.gradle.api.publish.maven.MavenPublication
  * see http://mike-neck.github.io/blog/2013/06/21/how-to-publish-artifacts-with-gradle-maven-publish-plugin-version-1-dot-6/
  * for more details.
  */
-trait WebSonatypePublishing implements SonatypePublishing {
+trait SonatypePublishingImpl implements SonatypePublishing {
     String SNAPSHOTS_REPO = "https://oss.sonatype.org/content/repositories/snapshots/";
     String RELEASES_REPO = "https://oss.sonatype.org/service/local/staging/deploy/maven2/";
 

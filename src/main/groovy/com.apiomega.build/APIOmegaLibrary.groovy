@@ -1,5 +1,7 @@
 package com.apiomega.build
 
+import com.apiomega.build.services.impl.apiomegalibrary.ConfigureBuildScriptImpl
+import com.apiomega.build.services.impl.apiomegalibrary.ConfigureDependenciesImpl
 import com.apiomega.build.services.impl.shared.ConfigureJavaVersionImpl
 import com.apiomega.build.services.impl.shared.ConfigureMavenImpl
 import com.apiomega.build.services.impl.shared.ConfigureWrapperImpl
@@ -10,23 +12,27 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 
 /**
- * A plugin to build the APIOmega RESTful interface war files
+ * Created by Matthew on 7/02/2016.
  */
-class APIWar implements
+class APIOmegaLibrary implements
         Plugin<Project>,
         ApplyPluginsImpl,
+        ConfigureBuildScriptImpl,
         ConfigureJavaVersionImpl,
         ConfigureMavenImpl,
         ConfigureArtifactDetailsImpl,
         SonatypePublishingImpl,
-        ConfigureWrapperImpl {
+        ConfigureWrapperImpl,
+        ConfigureDependenciesImpl {
 
     void apply(Project project) {
+        configureBuildScript(project);
         applyPlugins(project);
         configureSonatypePublishing(project);
         configureArtifactDetails(project);
         configureJavaVersion(project);
         configureMaven(project);
         configureWrapper(project);
+        configureDependencies(project);
     }
 }

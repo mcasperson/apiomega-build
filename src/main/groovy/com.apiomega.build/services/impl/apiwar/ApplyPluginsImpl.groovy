@@ -1,4 +1,4 @@
-package com.apiomega.build.services.impl
+package com.apiomega.build.services.impl.apiwar
 
 import com.apiomega.build.services.ApplyPlugins
 import org.gradle.api.Project
@@ -6,12 +6,12 @@ import org.gradle.api.Project
 /**
  * Created by Matthew on 23/01/2016.
  */
-trait WebApplyPlugins implements ApplyPlugins {
+trait ApplyPluginsImpl implements ApplyPlugins {
     void applyPlugins(Project project) {
         assert project != null;
         project.plugins.apply('war');
         project.plugins.apply('maven');
         project.plugins.apply('maven-publish');
-        project.plugins.apply('signing')
+        project.plugins.apply('signing');
     }
 }

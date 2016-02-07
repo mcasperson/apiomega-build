@@ -1,4 +1,4 @@
-package com.apiomega.build.services.impl
+package com.apiomega.build.services.impl.build
 
 import com.apiomega.build.services.ConfigureDependencies
 import org.gradle.api.Project
