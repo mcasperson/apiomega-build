@@ -14,8 +14,21 @@ import org.gradle.api.publish.maven.MavenPublication
 trait WebSonatypePublishing implements SonatypePublishing {
     void configureSonatypePublishing(Project project) {
         assert project != null;
-        assert project.hasProperty('ossrhUsername') : 'You need to define the ossrhUsername property in the gradle.properties file'
-        assert project.hasProperty('ossrhPassword') : 'You need to define the ossrhPassword property in the gradle.properties file'
+        assert project.hasProperty('ossrhUsername') : 'You need to define the ossrhUsername property in the ~/.gradle/gradle.properties file'
+        assert project.hasProperty('ossrhPassword') : 'You need to define the ossrhPassword property in the ~/.gradle/gradle.properties file'
+        assert project.hasProperty('MavenName') : 'You need to define the MavenName property in the gradle.properties file'
+        assert project.hasProperty('MavenDescription') : 'You need to define the MavenDescription property in the gradle.properties file'
+        assert project.hasProperty('MavenURL') : 'You need to define the MavenURL property in the gradle.properties file'
+        assert project.hasProperty('MavenSCMURL') : 'You need to define the MavenSCMURL property in the gradle.properties file'
+        assert project.hasProperty('MavenSCMConnection') : 'You need to define the MavenSCMConnection property in the gradle.properties file'
+        assert project.hasProperty('MavenLicenseName') : 'You need to define the MavenSCMConnection property in the gradle.properties file'
+        assert project.hasProperty('MavenLicenseURL') : 'You need to define the MavenSCMConnection property in the gradle.properties file'
+        assert project.hasProperty('MavenDeveloperID') : 'You need to define the MavenSCMConnection property in the gradle.properties file'
+        assert project.hasProperty('MavenDeveloperName') : 'You need to define the MavenSCMConnection property in the gradle.properties file'
+        assert project.hasProperty('MavenDeveloperEMail') : 'You need to define the MavenSCMConnection property in the gradle.properties file'
+        assert project.hasProperty('Group') : 'You need to define the MavenSCMConnection property in the gradle.properties file'
+        assert project.hasProperty('ArchivesBaseName') : 'You need to define the MavenSCMConnection property in the gradle.properties file'
+        assert project.hasProperty('Version') : 'You need to define the MavenSCMConnection property in the gradle.properties file'
 
         project.signing {
             sign project.configurations.archives
