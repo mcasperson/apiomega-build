@@ -13,6 +13,7 @@ trait ConfigureMavenImpl implements ConfigureMaven {
         assert project != null;
         project.repositories {
             mavenCentral()
+            mavenLocal()
             maven {
                 url 'http://4thline.org/m2'
             }
