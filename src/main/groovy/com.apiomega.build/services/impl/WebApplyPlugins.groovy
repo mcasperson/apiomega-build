@@ -11,7 +11,7 @@ trait WebApplyPlugins implements ApplyPlugins {
         assert project != null;
         project.plugins.apply('war');
         project.plugins.apply('maven');
-        project.plugins.apply('maven-publishing');
+        project.plugins.apply('maven-publish');
         project.plugins.apply('signing')
     }
 }

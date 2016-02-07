@@ -1,6 +1,10 @@
-apply plugin: 'groovy'
-
-dependencies {
-    compile gradleApi()
-    compile localGroovy()
+buildscript {
+    repositories {
+        mavenLocal()
+    }
+    dependencies {
+        classpath 'com.apiomega:build:0.0.1-SNAPSHOT'
+    }
 }
+
+apply plugin: 'com.apiomega.build'

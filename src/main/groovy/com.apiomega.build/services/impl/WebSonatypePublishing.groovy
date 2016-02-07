@@ -1,78 +1,81 @@
 package com.apiomega.build.services.impl
 
 import com.apiomega.build.services.SonatypePublishing
+import com.apiomega.build.services.impl.tasks.JavadocJarTask
+import com.apiomega.build.services.impl.tasks.SourceJarTask
 import org.gradle.api.Project
-import org.gradle.api.artifacts.maven.MavenDeployment
+import org.gradle.api.publish.maven.MavenPublication
 
 /**
  * An implementation that is shared across APIOmega projects to provide a way to publish to Sonatype
+ * see http://mike-neck.github.io/blog/2013/06/21/how-to-publish-artifacts-with-gradle-maven-publish-plugin-version-1-dot-6/
+ * for more details.
  */
 trait WebSonatypePublishing implements SonatypePublishing {
     void configureSonatypePublishing(Project project) {
         assert project != null;
 
-        project.task('javadocJar', 'Jar') {
-            classifier = 'javadoc'
-            from javadoc
-        }
-
-        project.task('sourcesJar', 'Jar') {
-            classifier = 'sources'
-            from sourceSets.main.allSource
-        }
-
-        project.artifacts {
-            archives javadocJar, sourcesJar
-        }
-
         project.signing {
-            sign configurations.archives
+            sign project.configurations.archives
         }
 
-        project.uploadArchives {
+        project.task('javadocJar', type: JavadocJarTask );
+        project.task('sourceJar ', type: SourceJarTask );
+
+        project.publishing {
+            publications {
+                mavenJava(MavenPublication) {
+
+                    /*pom.withXml {
+                        def root = asNode()
+                        root.appendNode('name', project.getProperties().get('MavenName'))
+                        root.appendNode('description', project.getProperties().get('MavenDescription'))
+                        root.appendNode('url', project.getProperties().get('MavenURL'))
+
+                        def scm = root.appendNode('scm')
+                        scm.appendNode('url', project.getProperties().get('MavenSCMURL'))
+                        scm.appendNode('connection', project.getProperties().get('MavenSCMConnection'))
+                        scm.appendNode('developerConnection', project.getProperties().get('MavenSCMConnection'))
+
+                        def license = root.appendNode('licenses').appendNode('license')
+                        license.appendNode('name', project.getProperties().get('MavenLicenseName'))
+                        license.appendNode('url', project.getProperties().get('MavenLicenseURL'))
+
+                        def developer = root.appendNode('developers').appendNode('developer')
+                        developer.appendNode('id', project.getProperties().get('MavenDeveloperID'))
+                        developer.appendNode('name', project.getProperties().get('MavenDeveloperName'))
+                        developer.appendNode('email', project.getProperties().get('MavenDeveloperEMail'))
+                    }*/
+
+                    groupId project.getProperties().get('Group')
+                    artifactId project.getProperties().get('ArchivesBaseName')
+                    version project.getProperties().get('Version')
+
+
+
+                    from project.components.java
+
+                    artifact('sourceJar') {
+                        classifier "sources"
+                    }
+
+                    artifact('javadocJar') {
+                        classifier 'javadoc'
+                    }
+                }
+            }
+
             repositories {
-                mavenDeployer {
-                    beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-                    repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                        authentication(
-                                userName: project.getProperties().get('ossrhUsername'),
-                                password: project.getProperties().get('ossrhPassword'))
+                maven {
+                    credentials {
+                        username project.getProperties().get('ossrhUsername')
+                        password project.getProperties().get('ossrhPassword')
                     }
 
-                    snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                        authentication(
-                                userName: project.getProperties().get('ossrhUsername'),
-                                password: project.getProperties().get('ossrhPassword'))
-                    }
-
-                    pom.project {
-                        name project.getProperties().get('MavenName')
-                        packaging 'war'
-                        // optionally artifactId can be defined here
-                        description project.getProperties().get('MavenDescription')
-                        url project.getProperties().get('MavenURL')
-
-                        scm {
-                            connection project.getProperties().get('MavenSCMConnection')
-                            developerConnection project.getProperties().get('MavenSCMConnection')
-                            url project.getProperties().get('MavenSCMURL')
-                        }
-
-                        licenses {
-                            license {
-                                name project.getProperties().get('MavenLicenseName')
-                                url project.getProperties().get('MavenLicenseURL')
-                            }
-                        }
-
-                        developers {
-                            developer {
-                                id project.getProperties().get('MavenDeveloperID')
-                                name project.getProperties().get('MavenDeveloperName')
-                                email project.getProperties().get('MavenDeveloperEMail')
-                            }
-                        }
+                    if(project.version.endsWith('-SNAPSHOT')) {
+                        url "https://oss.sonatype.org/content/repositories/snapshots/"
+                    } else {
+                        url "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
                     }
                 }
             }

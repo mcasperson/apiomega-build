@@ -1,6 +1,7 @@
 package com.apiomega.build
 
 import com.apiomega.build.services.impl.BuildApplyPlugins
+import com.apiomega.build.services.impl.BuildConfigureDependencies
 import com.apiomega.build.services.impl.SharedConfigureMaven
 import com.apiomega.build.services.impl.WebConfigureArtifactDetails
 import com.apiomega.build.services.impl.WebSonatypePublishing
@@ -15,12 +16,14 @@ class Build implements
         BuildApplyPlugins,
         SharedConfigureMaven,
         WebConfigureArtifactDetails,
-        WebSonatypePublishing {
+        WebSonatypePublishing,
+        BuildConfigureDependencies{
 
     void apply(Project project) {
-        applyPlugins(project); ;
+        applyPlugins(project);
+        configureDependencies(project);
         configureMaven(project);
-        configureArtifactDetails(project);
         configureSonatypePublishing(project);
+        configureArtifactDetails(project);
     }
 }

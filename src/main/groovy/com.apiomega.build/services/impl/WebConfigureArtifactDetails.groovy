@@ -10,8 +10,8 @@ trait WebConfigureArtifactDetails implements ConfigureArtifactDetails {
     void configureArtifactDetails(Project project) {
         assert project != null;
 
-        group = project.getProperties().get('Group')
-        archivesBaseName = project.getProperties().get('ArchivesBaseName')
-        version = project.getProperties().get('Version')
+        project.group = project.getProperties().get('Group')
+        project.archivesBaseName = project.getProperties().get('ArchivesBaseName')
+        project.version = project.getProperties().get('Version')
     }
 }
