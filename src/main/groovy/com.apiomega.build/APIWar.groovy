@@ -1,6 +1,6 @@
 package com.apiomega.build
 
-
+import com.apiomega.build.services.impl.apiwar.ConfigureDependenciesImpl
 import com.apiomega.build.services.impl.shared.ConfigureJavaVersionImpl
 import com.apiomega.build.services.impl.shared.ConfigureMavenImpl
 import com.apiomega.build.services.impl.shared.ConfigureWrapperImpl
@@ -20,7 +20,8 @@ class APIWar implements
         ConfigureMavenImpl,
         ConfigureArtifactDetailsImpl,
         SonatypePublishingImpl,
-        ConfigureWrapperImpl {
+        ConfigureWrapperImpl,
+        ConfigureDependenciesImpl {
 
     void apply(Project project) {
         applyPlugins(project);
@@ -29,5 +30,6 @@ class APIWar implements
         configureJavaVersion(project);
         configureMaven(project);
         configureWrapper(project);
+        configureDependencies(project);
     }
 }
