@@ -14,6 +14,8 @@ import org.gradle.api.publish.maven.MavenPublication
 trait WebSonatypePublishing implements SonatypePublishing {
     void configureSonatypePublishing(Project project) {
         assert project != null;
+        assert project.hasProperty('ossrhUsername') : 'You need to define the ossrhUsername property in the gradle.properties file'
+        assert project.hasProperty('ossrhPassword') : 'You need to define the ossrhPassword property in the gradle.properties file'
 
         project.signing {
             sign project.configurations.archives
@@ -26,7 +28,7 @@ trait WebSonatypePublishing implements SonatypePublishing {
             publications {
                 mavenJava(MavenPublication) {
 
-                    /*pom.withXml {
+                    getPom().withXml {
                         def root = asNode()
                         root.appendNode('name', project.getProperties().get('MavenName'))
                         root.appendNode('description', project.getProperties().get('MavenDescription'))
@@ -45,13 +47,11 @@ trait WebSonatypePublishing implements SonatypePublishing {
                         developer.appendNode('id', project.getProperties().get('MavenDeveloperID'))
                         developer.appendNode('name', project.getProperties().get('MavenDeveloperName'))
                         developer.appendNode('email', project.getProperties().get('MavenDeveloperEMail'))
-                    }*/
+                    }
 
                     groupId project.getProperties().get('Group')
                     artifactId project.getProperties().get('ArchivesBaseName')
                     version project.getProperties().get('Version')
-
-
 
                     from project.components.java
 
