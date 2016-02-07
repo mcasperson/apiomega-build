@@ -12,6 +12,9 @@ import org.gradle.api.publish.maven.MavenPublication
  * for more details.
  */
 trait WebSonatypePublishing implements SonatypePublishing {
+    String SNAPSHOTS_REPO = "https://oss.sonatype.org/content/repositories/snapshots/";
+    String RELEASES_REPO = "https://oss.sonatype.org/service/local/staging/deploy/maven2/";
+
     void configureSonatypePublishing(Project project) {
         assert project != null;
         assert project.hasProperty('ossrhUsername') : 'You need to define the ossrhUsername property in the ~/.gradle/gradle.properties file'
@@ -86,9 +89,9 @@ trait WebSonatypePublishing implements SonatypePublishing {
                     }
 
                     if(project.version.endsWith('-SNAPSHOT')) {
-                        url "https://oss.sonatype.org/content/repositories/snapshots/"
+                        url SNAPSHOTS_REPO
                     } else {
-                        url "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+                        url RELEASES_REPO
                     }
                 }
             }
