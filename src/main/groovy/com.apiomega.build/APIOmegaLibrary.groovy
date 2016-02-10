@@ -3,6 +3,7 @@ package com.apiomega.build
 import com.apiomega.build.services.impl.apiomegalibrary.ConfigureDependenciesImpl
 import com.apiomega.build.services.impl.apiomegalibrary.ApplyPluginsImpl
 import com.apiomega.build.services.impl.shared.ConfigureJavaVersionImpl
+import com.apiomega.build.services.impl.shared.ConfigureJavadocImpl
 import com.apiomega.build.services.impl.shared.ConfigureMavenImpl
 import com.apiomega.build.services.impl.shared.ConfigureWrapperImpl
 import com.apiomega.build.services.impl.shared.SonatypePublishingImpl
@@ -19,7 +20,8 @@ class APIOmegaLibrary implements
         ConfigureMavenImpl,
         SonatypePublishingImpl,
         ConfigureWrapperImpl,
-        ConfigureDependenciesImpl {
+        ConfigureDependenciesImpl,
+        ConfigureJavadocImpl {
 
     void apply(Project project) {
         applyPlugins(project);
@@ -28,6 +30,6 @@ class APIOmegaLibrary implements
         configureJavaVersion(project);
         configureMaven(project);
         configureWrapper(project);
-
+        configureJavadoc(project);
     }
 }
