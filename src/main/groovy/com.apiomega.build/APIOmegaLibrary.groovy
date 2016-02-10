@@ -5,8 +5,7 @@ import com.apiomega.build.services.impl.apiomegalibrary.ApplyPluginsImpl
 import com.apiomega.build.services.impl.shared.ConfigureJavaVersionImpl
 import com.apiomega.build.services.impl.shared.ConfigureMavenImpl
 import com.apiomega.build.services.impl.shared.ConfigureWrapperImpl
-import com.apiomega.build.services.impl.apiwar.ConfigureArtifactDetailsImpl
-import com.apiomega.build.services.impl.apiwar.SonatypePublishingImpl
+import com.apiomega.build.services.impl.shared.SonatypePublishingImpl
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -18,7 +17,6 @@ class APIOmegaLibrary implements
         ApplyPluginsImpl,
         ConfigureJavaVersionImpl,
         ConfigureMavenImpl,
-        ConfigureArtifactDetailsImpl,
         SonatypePublishingImpl,
         ConfigureWrapperImpl,
         ConfigureDependenciesImpl {
@@ -27,7 +25,6 @@ class APIOmegaLibrary implements
         applyPlugins(project);
         configureDependencies(project);
         configureSonatypePublishing(project);
-        configureArtifactDetails(project);
         configureJavaVersion(project);
         configureMaven(project);
         configureWrapper(project);
