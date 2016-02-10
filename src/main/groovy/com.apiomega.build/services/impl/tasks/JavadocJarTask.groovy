@@ -11,6 +11,6 @@ class JavadocJarTask extends Jar {
     @TaskAction
     def doAction() {
         classifier = 'javadoc'
-        from project.javadoc.destinationDir
+        from project.tasks.getByName('javadoc').destinationDir
     }
 }
