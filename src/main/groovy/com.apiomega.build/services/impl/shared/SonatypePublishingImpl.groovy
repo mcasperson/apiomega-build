@@ -67,6 +67,9 @@ trait SonatypePublishingImpl implements SonatypePublishing {
                     version project.getProperties().get('Version')
 
                     from project.components.java
+
+                    artifact (project.tasks.getByName('javadocJar'))
+                    artifact (project.tasks.getByName('sourceJar'))
                 }
             }
 
