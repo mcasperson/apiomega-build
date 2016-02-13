@@ -67,14 +67,6 @@ trait SonatypePublishingImpl implements SonatypePublishing {
                     version project.getProperties().get('Version')
 
                     from project.components.java
-
-                    artifact('sourceJar') {
-                        classifier "sources"
-                    }
-
-                    artifact('javadocJar') {
-                        classifier 'javadoc'
-                    }
                 }
             }
 
@@ -85,7 +77,7 @@ trait SonatypePublishingImpl implements SonatypePublishing {
                         password project.getProperties().get('ossrhPassword')
                     }
 
-                    if(project.version.endsWith('-SNAPSHOT')) {
+                    if(project.getProperties().get('Version').endsWith('-SNAPSHOT')) {
                         url SNAPSHOTS_REPO
                     } else {
                         url RELEASES_REPO

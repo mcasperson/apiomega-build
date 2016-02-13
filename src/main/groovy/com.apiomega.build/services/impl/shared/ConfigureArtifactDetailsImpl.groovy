@@ -1,4 +1,4 @@
-package com.apiomega.build.services.impl.apiwar
+package com.apiomega.build.services.impl.shared
 
 import com.apiomega.build.services.ConfigureArtifactDetails
 import org.gradle.api.Project
