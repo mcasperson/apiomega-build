@@ -9,8 +9,7 @@ import org.gradle.jvm.tasks.Jar
  */
 class JavadocJarTask extends Jar {
 
-    @TaskAction
-    def doAction() {
+    public JavadocJarTask() {
         classifier = 'javadoc'
 
         File file = ((Javadoc)project.tasks.getByName('javadoc')).getDestinationDir()

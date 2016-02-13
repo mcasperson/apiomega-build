@@ -11,13 +11,11 @@ import org.gradle.api.Project
  */
 trait ConfigureArtifactsImpl implements ConfigureArtifacts {
     void configureArtifacts(Project project) {
-        project.task('javadocJar', type: JavadocJarTask );
-        project.task('sourceJar', type: SourceJarTask );
+        project.tasks.create('javadocJar', JavadocJarTask.class);
+        project.tasks.create('sourceJar', SourceJarTask.class );
 
-        project.artifacts {
-            archives project.tasks.getByName('sourceJar')
-            archives project.tasks.getByName('javadocJar')
-        }
+        project.getArtifacts().add("archives", project.tasks.getByName('sourceJar'));
+        project.getArtifacts().add("archives", project.tasks.getByName('javadocJar'));
 
         project.getTasks().getByName("sourceJar").dependsOn(project.getTasks().getByName("classes"));
         project.getTasks().getByName("javadocJar").dependsOn(project.getTasks().getByName("javadoc"));
