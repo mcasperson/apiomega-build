@@ -2,6 +2,7 @@ package com.apiomega.build
 
 import com.apiomega.build.services.impl.apiomegalibrary.ConfigureDependenciesImpl
 import com.apiomega.build.services.impl.apiomegalibrary.ApplyPluginsImpl
+import com.apiomega.build.services.impl.shared.ConfigureArtifactsImpl
 import com.apiomega.build.services.impl.shared.ConfigureJavaVersionImpl
 import com.apiomega.build.services.impl.shared.ConfigureJavadocImpl
 import com.apiomega.build.services.impl.shared.ConfigureMavenImpl
@@ -21,11 +22,13 @@ class APIOmegaLibrary implements
         SonatypePublishingImpl,
         ConfigureWrapperImpl,
         ConfigureDependenciesImpl,
-        ConfigureJavadocImpl {
+        ConfigureJavadocImpl,
+        ConfigureArtifactsImpl {
 
     void apply(Project project) {
         applyPlugins(project);
         configureDependencies(project);
+        configureArtifacts(project);
         configureSonatypePublishing(project);
         configureJavaVersion(project);
         configureMaven(project);

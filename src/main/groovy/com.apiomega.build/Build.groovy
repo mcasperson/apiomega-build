@@ -2,6 +2,7 @@ package com.apiomega.build
 
 import com.apiomega.build.services.impl.build.BuildApplyPlugins
 import com.apiomega.build.services.impl.build.BuildConfigureDependencies
+import com.apiomega.build.services.impl.shared.ConfigureArtifactsImpl
 import com.apiomega.build.services.impl.shared.ConfigureJavadocImpl
 import com.apiomega.build.services.impl.shared.ConfigureMavenImpl
 import com.apiomega.build.services.impl.shared.ConfigureWrapperImpl
@@ -21,10 +22,12 @@ class Build implements
         SonatypePublishingImpl,
         BuildConfigureDependencies,
         ConfigureWrapperImpl,
-        ConfigureJavadocImpl {
+        ConfigureJavadocImpl,
+        ConfigureArtifactsImpl {
 
     void apply(Project project) {
         applyPlugins(project);
+        configureArtifacts(project);
         configureSonatypePublishing(project);
         configureDependencies(project);
         configureMaven(project);

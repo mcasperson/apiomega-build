@@ -1,6 +1,7 @@
 package com.apiomega.build.services.impl.tasks
 
 import org.gradle.api.tasks.TaskAction
+import org.gradle.api.tasks.javadoc.Javadoc
 import org.gradle.jvm.tasks.Jar
 
 /**
@@ -11,6 +12,9 @@ class JavadocJarTask extends Jar {
     @TaskAction
     def doAction() {
         classifier = 'javadoc'
-        from project.tasks.getByName('javadoc').destinationDir
+
+        File file = ((Javadoc)project.tasks.getByName('javadoc')).getDestinationDir()
+
+        from file
     }
 }

@@ -37,9 +37,6 @@ trait SonatypePublishingImpl implements SonatypePublishing {
             sign project.configurations.archives
         }
 
-        project.task('javadocJar', type: JavadocJarTask );
-        project.task('sourceJar ', type: SourceJarTask );
-
         project.publishing {
             publications {
                 mavenJava(MavenPublication) {
