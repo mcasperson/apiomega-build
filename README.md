@@ -10,7 +10,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.apiomega:build:0.0.4-SNAPSHOT'
+        classpath 'com.apiomega:build:0.0.6-SNAPSHOT'
     }
 }
 
