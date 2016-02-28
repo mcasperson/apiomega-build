@@ -1,7 +1,9 @@
 package com.apiomega.build
 
 import com.apiomega.build.services.impl.apiwar.ConfigureDependenciesImpl
+import com.apiomega.build.services.impl.shared.ConfigureArtifactsImpl
 import com.apiomega.build.services.impl.shared.ConfigureJavaVersionImpl
+import com.apiomega.build.services.impl.shared.ConfigureJavadocImpl
 import com.apiomega.build.services.impl.shared.ConfigureMavenImpl
 import com.apiomega.build.services.impl.shared.ConfigureWrapperImpl
 import com.apiomega.build.services.impl.apiwar.ApplyPluginsImpl
@@ -21,15 +23,19 @@ class APIWar implements
         ConfigureArtifactDetailsImpl,
         SonatypePublishingImpl,
         ConfigureWrapperImpl,
-        ConfigureDependenciesImpl {
+        ConfigureDependenciesImpl,
+        ConfigureJavadocImpl,
+        ConfigureArtifactsImpl {
 
     void apply(Project project) {
         applyPlugins(project);
         configureSonatypePublishing(project);
+        configureArtifacts(project);
         configureArtifactDetails(project);
         configureJavaVersion(project);
         configureMaven(project);
         configureWrapper(project);
         configureDependencies(project);
+        configureJavadoc(project);
     }
 }
