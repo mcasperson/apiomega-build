@@ -14,11 +14,14 @@ trait ConfigureDependenciesImpl implements ConfigureDependencies {
     def clingVersion = '2.0.1'
     def junitVersion = '4.12'
     def validationVersion = '1.1.0.Final'
+    def javaEEVersion = '7.0'
 
     void configureDependencies(Project project) {
         assert project != null;
 
         project.dependencies {
+            providedCompile 'javax:javaee-api:' + javaEEVersion
+
             compile 'de.escalon.hypermedia:hydra-spring:' + hydraSpringVersion
             compile 'org.apache.httpcomponents:httpclient:' + apacheHttpComponentsVersion
             compile 'org.apache.httpcomponents:httpmime:' + apacheHttpComponentsVersion
