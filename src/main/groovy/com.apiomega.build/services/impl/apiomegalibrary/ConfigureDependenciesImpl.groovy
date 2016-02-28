@@ -13,14 +13,11 @@ trait ConfigureDependenciesImpl implements ConfigureDependencies {
     def googleGuavaVersion = '19.0'
     def clingVersion = '2.0.1'
     def junitVersion = '4.12'
-    def javaEEVersion = '7.0'
 
     void configureDependencies(Project project) {
         assert project != null;
 
         project.dependencies {
-            providedCompile 'javax:javaee-api:' + javaEEVersion
-
             compile 'de.escalon.hypermedia:hydra-spring:' + hydraSpringVersion
             compile 'org.apache.httpcomponents:httpclient:' + apacheHttpComponentsVersion
             compile 'org.apache.httpcomponents:httpmime:' + apacheHttpComponentsVersion
