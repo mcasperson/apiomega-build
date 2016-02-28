@@ -7,7 +7,7 @@ import org.gradle.api.Project
  * Created by Matthew on 7/02/2016.
  */
 trait ConfigureDependenciesImpl implements ConfigureDependencies {
-    def elideVersion = '1.0.0.19'
+    def hydraSpringVersion = '0.2.0-beta3'
     def apacheHttpComponentsVersion = '4.5.1'
     def apacheCommonsIoVersion = '2.4'
     def googleGuavaVersion = '19.0'
@@ -19,10 +19,7 @@ trait ConfigureDependenciesImpl implements ConfigureDependencies {
         assert project != null;
 
         project.dependencies {
-            provided 'javax:javaee-api:7.0'
-
-            compile 'com.yahoo.elide:elide-core:' + elideVersion
-            compile 'com.yahoo.elide:elide-datastore-inmemorydb:' + elideVersion
+            compile 'de.escalon.hypermedia:hydra-spring:' + hydraSpringVersion
             compile 'org.apache.httpcomponents:httpclient:' + apacheHttpComponentsVersion
             compile 'org.apache.httpcomponents:httpmime:' + apacheHttpComponentsVersion
             compile 'commons-io:commons-io:' + apacheCommonsIoVersion
