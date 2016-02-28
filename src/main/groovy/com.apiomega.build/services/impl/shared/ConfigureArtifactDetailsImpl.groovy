@@ -10,6 +10,9 @@ trait ConfigureArtifactDetailsImpl implements ConfigureArtifactDetails {
     void configureArtifactDetails(Project project) {
         assert project != null;
 
+        /*
+            TODO: work out how to fix the file that is published when these properties are set
+         */
         project.group = project.getProperties().get('Group');
         project.archivesBaseName = project.getProperties().get('ArchivesBaseName');
         project.version = project.getProperties().get('Version');
