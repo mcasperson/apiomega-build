@@ -13,7 +13,6 @@ trait ConfigureDependenciesImpl implements ConfigureDependencies {
     def googleGuavaVersion = '19.0'
     def clingVersion = '2.0.1'
     def junitVersion = '4.12'
-    def validationVersion = '1.1.0.Final'
     def javaEEVersion = '7.0'
 
     void configureDependencies(Project project) {
@@ -28,7 +27,6 @@ trait ConfigureDependenciesImpl implements ConfigureDependencies {
             compile 'commons-io:commons-io:' + apacheCommonsIoVersion
             compile 'com.google.guava:guava:' + googleGuavaVersion
             compile 'org.fourthline.cling:cling-core:' + clingVersion
-            compile 'javax.validation:validation-api:' + validationVersion
 
             testCompile 'junit:junit:' + junitVersion
         }
