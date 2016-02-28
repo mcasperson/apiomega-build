@@ -1,12 +1,13 @@
 buildscript {
     repositories {
         mavenLocal()
+        mavenCentral()
         maven {
             url 'https://oss.sonatype.org/content/repositories/snapshots'
         }
     }
     dependencies {
-        classpath 'com.apiomega:build:0.0.3-SNAPSHOT'
+        classpath 'com.apiomega:build:0.0.4-SNAPSHOT'
     }
 }
 
