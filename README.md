@@ -4,6 +4,9 @@ To make use of this plugin, add the following to the build.gradle file:
 buildscript {
     repositories {
         mavenLocal()
+        maven {
+            url 'https://oss.sonatype.org/content/repositories/snapshots'
+        }
     }
     dependencies {
         classpath 'com.apiomega:build:0.0.1-SNAPSHOT'
