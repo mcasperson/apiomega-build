@@ -7,7 +7,7 @@ import org.gradle.api.Project
  * Defines the dependencies to be applied to WAR based API applications
  */
 trait ConfigureDependenciesImpl implements ConfigureDependencies {
-    def apiOmegaVersion = "0.0.5-SNAPSHOT";
+    def apiOmegaVersion = "0.0.6-SNAPSHOT";
     def swaggerVersion = "1.5.0";
 
     void configureDependencies(Project project) {
